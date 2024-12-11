@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<form action="{% url 'deleteorder' order.id %}" method="POST" class="delete-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <p>Are you sure you want to delete <strong>{{order}}</strong>?</p>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'dashboard' %}" class="btn btn-cancel">Cancel</a>
+        <input type="submit" name="confirm" class="btn btn-confirm" value="Confirm">
+    </div>
+</form>
+
+{% endblock  %}

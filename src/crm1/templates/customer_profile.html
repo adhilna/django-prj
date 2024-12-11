@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+   .profile-pic {
+    border: 3px solid #007bff;
+    padding: 5px;
+}
+.btn-back-home {
+    width: 100%;
+    margin-top: 10px;
+}
+
+</style>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Profile Card Section -->
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-header bg-secondar text-white">
+                        <h4 class="mb-0">{{ request.user.username }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img class="profile-pic rounded-circle mb-3 img-thumbnail"
+                        src="{{ request.user.customer.customprofile.url' }}" 
+                        alt="Profile Image" style="width: 150px; height: 150px; object-fit: cover;">
+
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-block">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Form Section -->
+            <div class="col-md-9">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Update Your Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Update Information
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+{% endblock %}
